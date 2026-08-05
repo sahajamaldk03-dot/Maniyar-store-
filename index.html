@@ -1,137 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>MANIYAR STORE</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MANIYAR STORE</title>
 
-<link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
 
-<header>
-<h1>MANIYAR STORE</h1>
+<header class="header">
+  <div class="logo">
+    <h1>MANIYAR STORE</h1>
+  </div>
 
-<nav>
-<a href="#">Home</a>
-<a href="#men">Men</a>
-<a href="#kids">Kids</a>
-<a href="#contact">Contact</a>
-</nav>
-
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="cart.html">Cart 🛒 <span id="cart-count">0</span></a>
+    <a href="wishlist.html">Wishlist ❤️ <span id="wishlist-count">0</span></a>
+  </nav>
 </header>
 
 <section class="hero">
-<h2>Complete Family Fashion (Men & Kids)</h2>
-<p>Latest Collection • Best Price</p>
+  <h2>Complete Family Fashion</h2>
+  <p>Latest Collection • Best Price</p>
 
-<a class="btn" href="https://wa.me/918779716804">
-Order on WhatsApp
-</a>
-
+  <a class="btn" href="https://wa.me/918779716804">
+    Order on WhatsApp
+  </a>
 </section>
 
-<section id="men">
-<h2>Men's Wear</h2>
-
-<div id="products"></div>
-
+<section class="search-box">
+  <input
+    type="text"
+    id="search-input"
+    placeholder="Search products...">
 </section>
 
-<section id="kids">
-<h2>Kids Wear</h2>
+<section class="category">
+  <button data-category="all">All</button>
+  <button data-category="men">Men</button>
+  <button data-category="kids">Kids</button>
+  <button data-category="jeans">Jeans</button>
+</section>
 
-<div id="kids-container"></div>
-
+<section id="products">
+  <div id="product-container"></div>
 </section>
 
 <footer id="contact">
-
-<p>
-222, I.R. Road,
-Bhendi Bazaar,
-Mumbai - 400003
-</p>
-
-<p>
-WhatsApp :
-8779716804
-</p>
-
+  <p>222, I.R. Road, Bhendi Bazaar, Mumbai - 400003</p>
+  <p>WhatsApp: 8779716804</p>
 </footer>
 
-<script type="module">
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
-
-import {
-getFirestore,
-collection,
-getDocs
-} from "https://www.gstatic.com/firebasejs/12.2.1/firebase-firestore.js";
-
-const firebaseConfig = {
-
-apiKey:"AIzaSyCVk2JzJ-NjhgGA9NVTjegFn3PsLFvOEFU",
-
-authDomain:"maniyarstore-952f8.firebaseapp.com",
-
-projectId:"maniyarstore-952f8",
-
-storageBucket:"maniyarstore-952f8.firebasestorage.app",
-
-messagingSenderId:"799276754088",
-
-appId:"1:799276754088:web:0791b421d01028d1908e9d"
-
-};
-
-const app = initializeApp(firebaseConfig);
-
-const db = getFirestore(app);
-
-const men = document.getElementById("products");
-
-const kids = document.getElementById("kids-container");
-
-const snapshot = await getDocs(collection(db,"products"));
-
-snapshot.forEach((doc)=>{
-
-const p = doc.data();
-
-const card = `
-
-<div class="product-card">
-
-<img src="${p.image}" width="180">
-
-<h3>${p.name}</h3>
-
-<p><del>₹${p.brandPrice}</del></p>
-
-<h2>₹${p.price}</h2>
-
-</div>
-
-`;
-
-if(p.category=="men"){
-
-men.innerHTML+=card;
-
-}
-
-if(p.category=="kids"){
-
-kids.innerHTML+=card;
-
-}
-
-});
-
-</script>
+<script type="module" src="app.js"></script>
 
 </body>
 </html>
