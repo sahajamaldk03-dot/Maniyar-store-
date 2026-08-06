@@ -97,7 +97,7 @@ function displayProducts(data) {
 
       <div class="product-card">
 
-        <<img src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}" alt="${product.name}">>
+       <img src="${product.image || 'https://via.placeholder.com/300x300?text=No+Image'}" alt="${product.name}">
 
         <div class="product-info">
 
