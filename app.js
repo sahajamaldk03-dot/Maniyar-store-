@@ -48,21 +48,29 @@ async function loadProducts() {
 
       });
 
-    });
+    });console.log(products);
+alert("Products: " + products.length);
 
     displayProducts(products);
 
   } catch (error) {
 
-    console.log(error);
+  console.error(error);
 
-    productContainer.innerHTML = `
-      <h2 style="text-align:center">
+  alert("Firebase Error:\n" + error.message);
+
+  productContainer.innerHTML = `
+    <h2 style="text-align:center;color:red">
       Products Load Failed 😢
-      </h2>
-    `;
+    </h2>
+
+    <p style="text-align:center;color:red">
+      ${error.message}
+    </p>
+  `;
 
   }
+
 
 }// ==========================
 // DISPLAY PRODUCTS
