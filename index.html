@@ -1,93 +1,79 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>MANIYAR STORE</title>
+<!-- MENU BUTTON -->
+<button class="menu-btn" onclick="openMenu()">☰</button>
 
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- MENU OVERLAY -->
+<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
 
-<header class="header">
-  <div class="logo">
-    <h1>MANIYAR STORE</h1>
+<!-- SIDE MENU -->
+<div id="sideMenu" class="side-menu">
+
+  <div class="menu-header">
+    <h2>Maniyar Store</h2>
+    <button onclick="closeMenu()">✕</button>
   </div>
 
-  <nav>
-  <a href="index.html">Home</a>
+  <div class="menu-title">Shop By Category</div>
 
-  <a href="cart.html">
-    Cart 🛒 <span id="cart-count">0</span>
-  </a>
+  <!-- MEN -->
+  <div class="menu-item" onclick="toggleSubmenu('menMenu')">
+    <span>👕 Men</span>
+    <span>›</span>
+  </div>
 
-  <a href="wishlist.html">
-    Wishlist ❤️ <span id="wishlist-count">0</span>
-  </a>
+  <div id="menMenu" class="submenu">
+    <a href="#men">All Men</a>
+    <a href="#shirts">Shirts</a>
+    <a href="#tshirts">T-Shirts</a>
+    <a href="#jeans">Jeans</a>
+    <a href="#trousers">Trousers</a>
+  </div>
 
-  <a href="admin.html">Admin</a>
+  <!-- WOMEN -->
+  <div class="menu-item" onclick="toggleSubmenu('womenMenu')">
+    <span>👗 Women</span>
+    <span>›</span>
+  </div>
 
-  </nav>
-</header>
+  <div id="womenMenu" class="submenu">
+    <a href="#women">All Women</a>
+    <a href="#kurtis">Kurtis</a>
+    <a href="#dresses">Dresses</a>
+    <a href="#tops">Tops</a>
+  </div>
 
-<section class="hero">
+  <!-- KIDS -->
+  <div class="menu-item" onclick="toggleSubmenu('kidsMenu')">
+    <span>🧒 Kids</span>
+    <span>›</span>
+  </div>
 
-  <h2>Complete Family Fashion</h2>
+  <div id="kidsMenu" class="submenu">
+    <a href="#kids">All Kids</a>
+    <a href="#boys">Boys Wear</a>
+    <a href="#girls">Girls Wear</a>
+    <a href="#kids-dresses">Kids Dresses</a>
+    <a href="#waistcoat">Waistcoat</a>
+  </div>
 
-  <p>
-    Latest Collection • Best Price
-  </p>
+  <!-- JEANS -->
+  <div class="menu-item" onclick="toggleSubmenu('jeansMenu')">
+    <span>👖 Jeans</span>
+    <span>›</span>
+  </div>
 
-  <a class="btn"
-     href="https://wa.me/918779716804">
-     Order on WhatsApp
-  </a>
+  <div id="jeansMenu" class="submenu">
+    <a href="#jeans">All Jeans</a>
+    <a href="#men-jeans">Men Jeans</a>
+    <a href="#kids-jeans">Kids Jeans</a>
+  </div>
 
-</section>
+  <!-- OTHER -->
+  <div class="menu-item">
+    <a href="#contact">📞 Contact Us</a>
+  </div>
 
-<section class="search-box">
+  <div class="menu-item">
+    <a href="admin.html">⚙️ Admin Panel</a>
+  </div>
 
-<input
-type="text"
-id="search-input"
-placeholder="Search Products...">
-
-</section>
-
-<section class="category">
-
-<button data-category="all">All</button>
-
-<button data-category="men">Men</button>
-
-<button data-category="kids">Kids</button>
-
-<button data-category="jeans">Jeans</button>
-
-</section>
-
-<section class="products">
-
-<div id="product-container"></div>
-
-</section>
-
-<footer>
-
-<p>
-📍 222, I.R. Road,
-Bhendi Bazaar,
-Mumbai - 400003
-</p>
-
-<p>
-📞 WhatsApp:
-8779716804
-</p>
-
-</footer>
-
-<script type="module" src="app.js"></script>
-
-</body>
-</html>
+</div>
