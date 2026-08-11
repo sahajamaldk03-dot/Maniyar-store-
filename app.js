@@ -275,3 +275,47 @@ function toggleSubmenu(id) {
   const submenu = document.getElementById(id);
   submenu.classList.toggle("active");
 }
+// ================= MENU =================
+
+const menuBtn = document.getElementById("menuBtn");
+const closeMenuBtn = document.getElementById("closeMenuBtn");
+const sideMenu = document.getElementById("sideMenu");
+const menuOverlay = document.getElementById("menuOverlay");
+
+// OPEN MENU
+menuBtn.addEventListener("click", () => {
+
+  sideMenu.classList.add("active");
+  menuOverlay.classList.add("active");
+
+});
+
+// CLOSE MENU
+closeMenuBtn.addEventListener("click", () => {
+
+  sideMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+
+});
+
+// CLOSE BY OVERLAY
+menuOverlay.addEventListener("click", () => {
+
+  sideMenu.classList.remove("active");
+  menuOverlay.classList.remove("active");
+
+});
+
+// SUBMENU
+document.querySelectorAll(".submenu-btn").forEach(button => {
+
+  button.addEventListener("click", () => {
+
+    const menuId = button.dataset.menu;
+    const submenu = document.getElementById(menuId);
+
+    submenu.classList.toggle("active");
+
+  });
+
+});
