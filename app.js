@@ -259,3 +259,19 @@ document.addEventListener("click", (e) => {
 updateCartCount();
 updateWishlistCount();
 loadProducts();
+// ================= MENU =================
+
+function openMenu() {
+  document.getElementById("sideMenu").classList.add("active");
+  document.getElementById("menuOverlay").classList.add("active");
+}
+
+function closeMenu() {
+  document.getElementById("sideMenu").classList.remove("active");
+  document.getElementById("menuOverlay").classList.remove("active");
+}
+
+function toggleSubmenu(id) {
+  const submenu = document.getElementById(id);
+  submenu.classList.toggle("active");
+}
