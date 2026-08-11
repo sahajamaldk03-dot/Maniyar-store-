@@ -1,21 +1,30 @@
-<!-- MENU BUTTON -->
-<button class="menu-btn" onclick="openMenu()">☰</button>
+<!-- ================= MENU BUTTON ================= -->
 
-<!-- MENU OVERLAY -->
-<div id="menuOverlay" class="menu-overlay" onclick="closeMenu()"></div>
+<button id="menuBtn" class="menu-btn">☰</button>
 
-<!-- SIDE MENU -->
+
+<!-- ================= MENU OVERLAY ================= -->
+
+<div id="menuOverlay" class="menu-overlay"></div>
+
+
+<!-- ================= SIDE MENU ================= -->
+
 <div id="sideMenu" class="side-menu">
 
   <div class="menu-header">
     <h2>Maniyar Store</h2>
-    <button onclick="closeMenu()">✕</button>
+    <button id="closeMenuBtn">✕</button>
   </div>
 
-  <div class="menu-title">Shop By Category</div>
+  <div class="menu-title">
+    Shop By Category
+  </div>
+
 
   <!-- MEN -->
-  <div class="menu-item" onclick="toggleSubmenu('menMenu')">
+
+  <div class="menu-item submenu-btn" data-menu="menMenu">
     <span>👕 Men</span>
     <span>›</span>
   </div>
@@ -28,8 +37,10 @@
     <a href="#trousers">Trousers</a>
   </div>
 
+
   <!-- WOMEN -->
-  <div class="menu-item" onclick="toggleSubmenu('womenMenu')">
+
+  <div class="menu-item submenu-btn" data-menu="womenMenu">
     <span>👗 Women</span>
     <span>›</span>
   </div>
@@ -41,8 +52,10 @@
     <a href="#tops">Tops</a>
   </div>
 
+
   <!-- KIDS -->
-  <div class="menu-item" onclick="toggleSubmenu('kidsMenu')">
+
+  <div class="menu-item submenu-btn" data-menu="kidsMenu">
     <span>🧒 Kids</span>
     <span>›</span>
   </div>
@@ -55,8 +68,10 @@
     <a href="#waistcoat">Waistcoat</a>
   </div>
 
+
   <!-- JEANS -->
-  <div class="menu-item" onclick="toggleSubmenu('jeansMenu')">
+
+  <div class="menu-item submenu-btn" data-menu="jeansMenu">
     <span>👖 Jeans</span>
     <span>›</span>
   </div>
@@ -67,7 +82,9 @@
     <a href="#kids-jeans">Kids Jeans</a>
   </div>
 
+
   <!-- OTHER -->
+
   <div class="menu-item">
     <a href="#contact">📞 Contact Us</a>
   </div>
