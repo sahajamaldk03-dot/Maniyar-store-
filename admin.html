@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Admin Dashboard | Maniyar Store</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/admin.css">
+</head>
+<body>
+
+<!-- ===================== LOGIN SCREEN ===================== -->
+<div class="admin-login" id="adminLogin">
+  <div class="admin-login__box">
+    <h1>Maniyar Store Admin</h1>
+    <p>Sign in to manage products and orders</p>
+    <input type="password" id="adminPassword" placeholder="Enter admin password">
+    <button id="adminLoginBtn">Login</button>
+    <p class="admin-login__error" id="adminLoginError"></p>
+    <p class="admin-login__note">Default password: <strong>maniyar123</strong><br>
+    This is a simple, browser-only lock meant for your personal use while editing — it is not secure against a determined attacker. Change it in js/admin.js (ADMIN_PASSWORD), and see the Firebase section of this project for real login security (Firebase Authentication).</p>
+  </div>
+</div>
+
+<!-- ===================== DASHBOARD ===================== -->
+<div class="admin-app" id="adminApp">
+  <div class="admin-sidebar-backdrop" id="sidebarBackdrop"></div>
+  <aside class="admin-sidebar" id="adminSidebar">
+    <a href="index.html" class="logo">MANIYAR <span>STORE</span></a>
+    <nav class="admin-nav">
+      <a data-section="dashboard" class="is-active">📊 Dashboard</a>
+      <a data-section="products">👕 Products</a>
+      <a data-section="orders">📦 Orders</a>
+    </nav>
+    <div class="admin-sidebar-footer">
+      <a href="index.html">↩ View Store</a>
+      <a id="logoutBtn" class="logout-btn">Logout</a>
+    </div>
+  </aside>
+
+  <main class="admin-main">
+    <div class="admin-topbar">
+      <button class="mobile-sidebar-toggle" id="sidebarToggle">☰</button>
+      <h2 id="sectionTitle">Dashboard</h2>
+      <span></span>
+    </div>
+
+    <!-- ---------------- DASHBOARD ---------------- -->
+    <section class="admin-section is-active" id="section-dashboard">
+      <div class="stat-grid">
+        <div class="stat-card"><div class="label">Total Products</div><div class="value" id="statProducts">0</div></div>
+        <div class="stat-card"><div class="label">Total Orders</div><div class="value" id="statOrders">0</div></div>
+        <div class="stat-card"><div class="label">Pending Orders</div><div class="value" id="statPending">0</div></div>
+        <div class="stat-card"><div class="label">Total Sales</div><div class="value gold" id="statSales">₹0</div></div>
+      </div>
+      <div class="chart-card">
+        <h4>Orders by Status</h4>
+        <div id="statusChart"></div>
+      </div>
+      <div class="chart-card">
+        <h4>Recent Orders</h4>
+        <div class="table-wrap">
+          <table>
+            <thead><tr><th>Order ID</th><th>Customer</th><th>Total</th><th>Status</th></tr></thead>
+            <tbody id="recentOrdersBody"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+
+    <!-- ---------------- PRODUCTS ---------------- -->
+    <section class="admin-section" id="section-products">
+      <div class="admin-toolbar">
+        <input type="text" class="admin-search" id="productSearch" placeholder="Search products...">
+        <button class="btn-admin primary" id="addProductBtn">+ Add Product</button>
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Image</th><th>Name</th><th>Category</th><th>Price</th><th>Discount</th><th>Stock</th><th>Actions</th></tr>
+          </thead>
+          <tbody id="productsTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ---------------- ORDERS ---------------- -->
+    <section class="admin-section" id="section-orders">
+      <div class="admin-toolbar">
+        <input type="text" class="admin-search" id="orderSearch" placeholder="Search orders by name, phone or ID...">
+      </div>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Order ID</th><th>Customer</th><th>Phone</th><th>Address</th><th>Items</th><th>Total</th><th>Date</th><th>Status</th><th></th></tr>
+          </thead>
+          <tbody id="ordersTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+</div>
+
+<!-- ===================== ADD/EDIT PRODUCT MODAL ===================== -->
+<div class="admin-modal" id="productModal">
+  <div class="admin-modal__backdrop" id="productModalBackdrop"></div>
+  <div class="admin-modal__box">
+    <button class="admin-modal__close" id="productModalClose">✕</button>
+    <h3 id="productModalTitle">Add Product</h3>
+    <form id="productForm">
+      <input type="hidden" id="pf_id">
+      <div class="form-grid">
+        <div class="full"><label>Product Name *</label><input type="text" id="pf_name" required></div>
+
+        <div><label>Category *</label>
+          <select id="pf_category" required>
+            <option>Shirts</option><option>T-Shirts</option><option>Jeans</option>
+            <option>Waistcoats</option><option>Kids Wear</option><option>Women's Wear</option><option>Men's Wear</option>
+          </select>
+        </div>
+        <div><label>Gender</label>
+          <select id="pf_gender"><option>Men</option><option>Women</option><option>Kids</option></select>
+        </div>
+
+        <div><label>Price (₹) *</label><input type="number" id="pf_price" min="0" required></div>
+        <div><label>Discount Price (₹)</label><input type="number" id="pf_discountPrice" min="0"></div>
+
+        <div><label>Stock Quantity *</label><input type="number" id="pf_stock" min="0" required></div>
+        <div><label>Rating (0-5)</label><input type="number" id="pf_rating" min="0" max="5" step="0.1" value="4.5"></div>
+
+        <div class="full"><label>Available Sizes * (comma separated, e.g. S,M,L,XL)</label><input type="text" id="pf_sizes" required placeholder="S, M, L, XL"></div>
+        <div class="full"><label>Available Colors * (comma separated)</label><input type="text" id="pf_colors" required placeholder="Black, White, Blue"></div>
+
+        <div class="full"><label>Description</label><textarea id="pf_description"></textarea></div>
+
+        <div class="full">
+          <label>Product Image</label>
+          <input type="text" id="pf_imageUrl" placeholder="Paste an image URL (or upload a file below)">
+          <input type="file" id="pf_imageFile" accept="image/*" style="margin-top:8px;">
+          <p class="hint">Tip: paste an image URL for the easiest setup, or upload a photo from your phone (stored directly in the browser). For a real store, connect Firebase Storage — see js/firebase.js.</p>
+          <div class="image-preview-row" id="imagePreviewRow"></div>
+        </div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn-admin outline" id="productCancelBtn">Cancel</button>
+        <button type="submit" class="btn-admin primary">Save Product</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- ===================== ORDER DETAIL MODAL ===================== -->
+<div class="admin-modal" id="orderModal">
+  <div class="admin-modal__backdrop" id="orderModalBackdrop"></div>
+  <div class="admin-modal__box">
+    <button class="admin-modal__close" id="orderModalClose">✕</button>
+    <h3>Order Details</h3>
+    <div id="orderModalBody"></div>
+  </div>
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/cart.js"></script>
+<script src="js/wishlist.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>
